@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">my_mtn_clone</string>
+     <string moduleConfig="true" name="CodePushDeploymentKey">wFjSPR_Oyeg9qQx9m-SIY5BUYeMlmFiOz4Sjl</string>
 </resources>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet} from 'react-native';
-import { View, Button, Container } from 'native-base';
+import { View, Button, Container, Header, Footer, Left, Right, Body, Title, Icon } from 'native-base';
 import { createSwitchNavigator } from 'react-navigation';
 import Dashboard from './components/dashboard'
 import Configs from './config';
@@ -35,15 +35,31 @@ class App extends Component {
     const {AppContainerStyle, ButtonContainerStyle, textLabelStyle, AppViewStyle} = styles;
     const {loading} = this.state
     return(
-      <Container style = {[AppContainerStyle]}>
-        <View style = {AppViewStyle} >
-           {loading?Loader: <React.Fragment />}
-          <Button onPress={ () => this.setLoader() } primary={true} style={[ButtonContainerStyle]}>
-                <Text style={textLabelStyle}>Offers</Text>
-          </Button>
-          {loading?<Text style={[textLabelStyle, {alignSelf:'center', fontSize:font.size*0.75}]}>loading...</Text>: <React.Fragment />}
-        </View>
+      <Container>
+        {/* <Header style={[{}]} transparent={true}/> */}
+        <Header style={{backgroundColor: yellow}}>
+          <Left>
+            <Button transparent>
+              <Icon name='menu' />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Header</Title>
+          </Body>
+          <Right></Right>
+        </Header>
+        <Container style = {[AppContainerStyle]}>
+          <View style = {AppViewStyle} >
+            {loading?Loader: <React.Fragment />}
+            <Button onPress={ () => this.setLoader() } primary={true} style={[ButtonContainerStyle]}>
+                  <Text style={textLabelStyle}>Offers</Text>
+            </Button>
+            {loading?<Text style={[textLabelStyle, {alignSelf:'center', fontSize:font.size*0.75}]}>loading...</Text>: <React.Fragment />}
+          </View>
+        </Container>
+        <Footer />
       </Container>
+
     )
   }
 }
@@ -69,7 +85,7 @@ const styles = StyleSheet.create({
   },
   ButtonContainerStyle: {
     width: font.size*12,
-    justifyContent: 'center',
+    justifyContent: 'center',       
     alignSelf: 'center',
     borderRadius: font.size*3,
     elevation: 0,
@@ -80,5 +96,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
   }
 })
+
+let codePushOptions = { 
+  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME, 
+  installMode: codePush.InstallMode.ON_NEXT_RESUME 
+}
+
+App = codePush(codePushOptions)(App);
 
 export default App;
