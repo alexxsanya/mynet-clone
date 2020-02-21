@@ -7,9 +7,14 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "npx jetify",
+    "update-apps": "sudo code-push release-react my_mtn_clone android -m --description 'Modified the header color'"
   },
   "dependencies": {
+    "appcenter": "3.0.0",
+    "appcenter-analytics": "3.0.0",
+    "appcenter-crashes": "3.0.0",
     "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "0.61.5",
