@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 import { Dimensions, Platform, View, ActivityIndicator, Image, StyleSheet } from 'react-native';
-import moment from 'moment';
 
 const dimensions = Dimensions.get('window');
 
