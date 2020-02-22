@@ -1,13 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
 import { Dimensions, Platform, View, ActivityIndicator, Image, StyleSheet } from 'react-native';
+import moment from 'moment';
 
 const dimensions = Dimensions.get('window');
 
 const baseFontSize = 16;
 
+
 const font = {
-	size: baseFontSize
+    size: baseFontSize,
 };
 
 const colors = {
@@ -30,63 +32,8 @@ export default {
 	},
 	font,
 	colors,
-	header: {
-		barStyle: {
-			elevation: 0,
-			backgroundColor: colors.yellow,
-			height: baseFontSize * 4
-		},
-		headerLeft: <Image source={require('./assets/images/logo.png')} style={{ width: baseFontSize * 2, height: baseFontSize * 2, margin: baseFontSize }} />
-	},
-	horizontalTransitions: () => ({
-		screenInterpolator: sceneProps => {
-			const { layout, position, scene } = sceneProps;
-			const { index } = scene;
-			const width = layout.initWidth;
-
-			return {
-				opacity: position.interpolate({
-					inputRange: [index - 1, index, index + 1],
-					outputRange: [0, 1, 0]
-				}),
-				transform: [
-					{
-						translateX: position.interpolate({
-							inputRange: [index - 1, index, index + 1],
-							outputRange: [width, 0, -width]
-						})
-					}
-				]
-			};
-		},
-		headerTitleInterpolator: sceneProps => {
-			const { layout, position, scene } = sceneProps;
-			const { index } = scene;
-
-			return {
-				opacity: position.interpolate({
-					inputRange: [index - 1, index, index + 1],
-					outputRange: [0, 1, 0]
-				}),
-				transform: [
-					{
-						translateX: position.interpolate({
-							inputRange: [index - 1, index, index + 1],
-							outputRange: [-50, 0, 50]
-						})
-					}
-				]
-			};
-		}
-	}),
-	images: {
-		gifs: {
-			uncracked: require('./assets/images/gifs/egg.gif'),
-			cracked: require('./assets/images/gifs/egg-cracking.gif')
-		}
-	},
 	API: {
-		baseURL: ''
+		baseURL: 'https://api.dev/'
 	},
 	getDiff: (object, base) => {
 		function changes(object, base) {
