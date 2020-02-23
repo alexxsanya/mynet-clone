@@ -19,8 +19,20 @@ const colors = {
 		dark: '#4c4c4c',
 		medium: '#b7baba'
 	},
-	youth: '#f5821e'
+	youth: '#f5821e',
+	main: 'pink',
 };
+
+const firebase = {
+	config: {
+		apiKey: 'AIzaXXXXXXXXXXXXXXXXXXXXXXX',
+		authDomain: 'rnfirebXXX-XXXX.firebaseapp.com',
+		databaseURL: 'rnfirebXXX-XXXX.firebaseapp.com',
+		projectId: 'fb-firebase-2e6f9',
+		storageBucket: 'fb-firebase-2e6f9.appspot.com',
+		messagingSenderId: 'XXXXXXX'
+	  }
+}
 
 export default {
 	viewPort: {

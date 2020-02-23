@@ -1,46 +1,92 @@
 import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import { StyleSheet, View } from 'react-native';
 
-import { Container, Content, Text, Card, Header, Body, Button, Title, CardItem } from 'native-base';
+import { Container, Content, Text, Icon, Header, Body, Button, Footer, FooterTab, Left, Title, Right } from 'native-base';
 import { increment, decrement, logRecord } from '../../actions/reducerActions';
+
+
+import Curved, {BadgeCurve} from '../common/curve'
+import config from '../../config'
+
+const {font, colors} = config
 
 class Counter extends Component{
     render(){
         console.log(this.props.count);
         const { count } = this.props;
-
+        
         return(
           <Container>
-            <Header>
+            <Header noShadow={true} > 
+              {/* <Left>
+                <Button transparent>
+                  <Icon name='arrow-back' />
+                </Button>
+              </Left> */}
               <Body>
-                <Title>Redux Counter</Title>
+                <Title>Appclone</Title>
               </Body>
+              <Right>
+            <Button transparent>
+              <Icon name='search' />
+            </Button>
+            <Button transparent>
+              <Icon name='more' />
+            </Button>
+          </Right>
             </Header>
-            <Content padder>
-              <Card>
-                <CardItem>
-                  <Text>
-                    {this.props.count}
-                  </Text>
-                </CardItem>
-              </Card>
-              <Button dark bordered onPress= {() => this.props.increment()}>
-                <Text>Increment</Text>
-              </Button>
-              <Button dark bordered onPress= {() => this.props.decrement()}>
-                <Text>Decrement</Text>
-              </Button>
-              <Button dark bordered onPress= {() => this.props.logRecord(count)}>
-                <Text>Log Data</Text>
-              </Button>
+            <Content padder contentContainerStyle={styles.contentStyles}>
+              <View style={styles.cardItemStyle}>
+                <Curved />
+                <Text style={styles.textInputStyle}>
+                  {this.props.count}
+                </Text>
+              </View> 
+
             </Content>
+            <Footer backgroundColor='brandPrimary'>
+              <FooterTab>
+                <Button onPress= {() => this.props.increment()}>
+                  <Icon name="ios-add-circle" />
+                </Button>
+                <Button onPress= {() => this.props.decrement()}>
+                  <Icon name="minus-circle" />
+                </Button>
+                <Button active onPress= {() => this.props.logRecord(count)}>
+                  <Icon active name="save" />
+                </Button>
+                <Button>
+                  <Icon name="person" />
+                </Button>
+              </FooterTab>
+            </Footer>
           </Container>
         );
       }
 }
 
+const styles = StyleSheet.create({
+  contentStyles: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center'
+  },
+  textInputStyle: {
+    position: 'absolute',
+    top:font.size*2.25,
+    left: font.size * 11.5,
+    fontSize: font.size*1.25,
+    color: 'gray'
+  },
 
+  cardItemStyle: {
+    borderWidth:0,
+    position:'relative'
+  },
+
+});
 // mapStateToProps => This function, simply takes your reducer data, that is required, 
 // and converts it into a usable Prop. Now we can use the data as a prop. example this.props.data.
 mapStateToProps = (state) => {
